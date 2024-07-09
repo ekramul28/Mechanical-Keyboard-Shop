@@ -1,10 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "DM Sans", sans-serif;
 }
 
 body.dark {
   background-color: #001529;
   color: white;
+}
+
+.banner-image1 {
+  background: linear-gradient(to right, rgb(0 0 0 / 84%), rgb(175 12 12 / 35%)),
+    url("https://i.ibb.co/72nv3qv/usetldr-12084257-u-12400777-image-format-y-QGDrv6-Zdxm-LU9-Q-1.png");
+  background-size: cover;
+}
+.banner-image2 {
+  background: linear-gradient(to right, rgb(0 0 0 / 84%), rgb(175 12 12 / 35%)),
+    url("https://i.ibb.co/MnG7gLG/Minimalist-Pastel-Pink-Mechanical-Keyboard.png");
+  background-size: cover;
+}
+.banner-image3 {
+  background: linear-gradient(to right, rgb(0 0 0 / 84%), rgb(175 12 12 / 35%)),
+    url("https://i.ibb.co/4KsccDz/clay-banks-PXa-QXTh-G1-FY-unsplash.jpg");
+  background-size: cover;
+}
+.banner-image4 {
+  background: linear-gradient(to right, rgb(0 0 0 / 84%), rgb(175 12 12 / 35%)),
+    url("https://i.ibb.co/1Gfth4W/Professional-Typing-on-Modern-Laptop.png");
+  background-size: cover;
+}
+
+.container {
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  min-height: 100vh;
 }

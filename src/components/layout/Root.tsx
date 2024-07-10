@@ -4,13 +4,13 @@ import NavBar from "../../pages/home/navBar/NavBar";
 
 const Root = () => {
   return (
-    <div>
+    <>
       <NavBar />
-      <div className="container">
+      <div className="container primary-color ">
         <Outlet />
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </>
   );
 };
 

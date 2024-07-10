@@ -17,7 +17,6 @@ const ReviewsCard = ({
   review,
   authorName,
   authorPosition,
-  authorCompany,
   imageUrl,
   brand,
 }: TReview) => {

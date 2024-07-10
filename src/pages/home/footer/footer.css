@@ -2,9 +2,6 @@ a {
   color: #fff;
   text-decoration: none;
 }
-.pg-footer {
-  font-family: "Roboto", sans-serif;
-}
 
 .footer {
   background-color: #004658;
@@ -20,7 +17,7 @@ a {
 }
 
 .footer-wave-path {
-  fill: #fffff2;
+  fill: #f0f0f0;
 }
 
 .footer-content {

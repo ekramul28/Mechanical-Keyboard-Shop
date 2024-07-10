@@ -1,8 +1,6 @@
-import { Button, Layout, Menu, Switch } from "antd";
+import { Button, Layout, Menu } from "antd";
 import { itemGenerator } from "../../../utils/itamsGenerator";
 import { homeRoute } from "../../../routes/home.routes";
-import { useScroll, motion, useMotionValueEvent } from "framer-motion";
-import { useState } from "react";
 
 const { Header } = Layout;
 const NavBar = () => {
@@ -29,6 +27,9 @@ const NavBar = () => {
           width: "100%",
           backgroundColor: "#F0F0F0",
           position: "fixed",
+          borderBottom: "3px",
+          borderStyle: "groove",
+          borderColor: "black",
         }}
       >
         <div className="logo">MyLogo</div>

@@ -9,6 +9,10 @@
   font-family: "DM Sans", sans-serif;
 }
 
+.primary-color {
+  background-color: #f0f0f0;
+}
+
 body.dark {
   background-color: #001529;
   color: white;

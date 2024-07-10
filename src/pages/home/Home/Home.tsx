@@ -1,11 +1,13 @@
-import FeaturedProducts from "../FeaturedProducts";
-import HeroSection from "../HeroSection";
-import ServiceAdvertisement from "../ServiceAdvertisement";
+import CustomerReview from "../CustomerReviews/CustomerReview";
+import FeaturedProducts from "../featuredProducts/FeaturedProducts";
+import HeroSection from "../heroSection/HeroSection";
+import ServiceAdvertisement from "../serviceAdvertisement/ServiceAdvertisement";
 
 const Home = () => {
   return (
     <div>
       <HeroSection />
+      <CustomerReview />
       <FeaturedProducts />
       <ServiceAdvertisement />
     </div>

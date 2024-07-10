@@ -1,7 +1,12 @@
+import { Reviews } from "./ReviewData";
+import ReviewsCard from "./ReviewsCard";
+import "./Review.css";
 const CustomerReview = () => {
   return (
-    <div>
-      <h1>review</h1>
+    <div className="reviewMain">
+      {Reviews.map((review, index) => (
+        <ReviewsCard key={index} {...review} />
+      ))}
     </div>
   );
 };

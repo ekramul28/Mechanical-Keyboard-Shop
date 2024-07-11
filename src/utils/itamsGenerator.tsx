@@ -10,7 +10,7 @@ export const itemGenerator = (items: TUserPath[]) => {
       });
     }
 
-    if (item.children) {
+    if (item.children && item.name) {
       acc.push({
         key: item.name,
         label: item.name,

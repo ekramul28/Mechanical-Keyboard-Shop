@@ -2,7 +2,7 @@ import { Button } from "antd";
 
 const ProductHeader = () => {
   return (
-    <div className="p-20 bg-[#E9E1FC] mt-10 flex justify-center items-center">
+    <div className="p-20 mt-20 bg-[#E9E1FC]  flex justify-center items-center">
       <div>
         <h1 className="font-bold text-[30px]">
           Grab Upto 50% Off on Selected keyBoard

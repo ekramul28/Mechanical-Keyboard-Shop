@@ -2,6 +2,8 @@ import About from "../pages/home/aboutUs/About";
 import Contact from "../pages/home/contactUs/Contact";
 import Home from "../pages/home/Home/Home";
 import Products from "../pages/productsCollection/Products";
+import ProductDetails from "../pages/productsCollection/productDetails/ProductDetails";
+import { Children } from "react";
 
 export const homeRoute = [
   {
@@ -13,7 +15,14 @@ export const homeRoute = [
     name: "Product",
     path: "product",
     element: <Products />,
+    children: [
+      {
+        path: ":id",
+        element: <ProductDetails />,
+      },
+    ],
   },
+
   {
     name: "About",
     path: "about",

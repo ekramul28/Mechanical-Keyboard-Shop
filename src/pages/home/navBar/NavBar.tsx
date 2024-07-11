@@ -33,6 +33,10 @@ const NavBar = () => {
       label: <NavLink to="/product">Product</NavLink>,
     },
     {
+      name: "Cart",
+      label: <NavLink to="/cart">Cart</NavLink>,
+    },
+    {
       name: "About",
       label: <NavLink to="/about">About</NavLink>,
     },

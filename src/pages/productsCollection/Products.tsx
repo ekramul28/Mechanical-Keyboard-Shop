@@ -8,7 +8,7 @@ import ProductHeader from "./ProcuctHeader";
 import ProductsCard from "./ProductsCard";
 
 const Products = () => {
-  const cards = [
+  const cards1 = [
     {
       _id: "1",
       image:
@@ -65,8 +65,8 @@ const Products = () => {
       descriptions: "This is the main think",
     },
   ];
-  const { data: cards2, isLoading, error } = useProductQuery(undefined);
-  console.log(cards2);
+  const { data: products, isLoading, error } = useProductQuery(undefined);
+  console.log(products);
   // if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading products</div>;
   return (
@@ -76,14 +76,21 @@ const Products = () => {
       <div>
         <h1 className="font-bold text-2xl text-center">Card Section</h1>
         <div className="grid lg:grid-cols-4 md:grid-cols-3  justify-center items-center">
-          {isLoading ? <div>Loading...</div> : ""}
-          {Array.isArray(cards2?.data) ? (
-            cards2?.data?.map((card: TProduct, index: number) => (
-              <ProductsCard key={index} {...card} />
-            ))
-          ) : (
-            <div>No products available</div>
-          )}
+          {error ? (
+            <>Oh no, there was an error</>
+          ) : isLoading ? (
+            <>Loading... </>
+          ) : products ? (
+            <>
+              {Array.isArray(products?.data) ? (
+                products?.data?.map((card: TProduct, index: number) => (
+                  <ProductsCard key={index} {...card} />
+                ))
+              ) : (
+                <div>No products available</div>
+              )}
+            </>
+          ) : null}
         </div>
       </div>
       <div className="flex justify-center items-center">

@@ -17,11 +17,6 @@ const ProductsCard = ({ _id, image, title }: TProduct) => {
             src={image[0]}
           />
         }
-        //     actions={[
-        //       <SettingOutlined key="setting" />,
-        //       <EditOutlined key="edit" />,
-        //       <EllipsisOutlined key="ellipsis" />,
-        //     ]}
       >
         <Meta
           avatar={

@@ -1,10 +1,26 @@
-import React from "react";
+import { useState } from "react";
 import QuantityBtn from "../../components/quantitybtn/QuantityBtn";
-
-const CartRow = ({ product }) => {
-  console.log(product);
-  const handleSelected = (e, _id) => {};
-  const handleQuantity = () => {};
+import { useDeleteProductCartMutation } from "../../redux/features/cart/cartApi";
+import { TProduct } from "../../redux/features/products/productApi";
+type TCardRow = {
+  product: TProduct;
+  id: string;
+  productQuantity: number;
+};
+const CartRow = ({ product, id, productQuantity }: TCardRow) => {
+  const [Quantity, setQuantity] = useState(
+    productQuantity ? productQuantity : 0
+  );
+  const [deleteProductCart] = useDeleteProductCartMutation();
+  const handleSelected = (e: string, _id: string) => {};
+  const handleQuantity = (e: string) => {
+    if (e === "+") {
+      setQuantity(Quantity + 1);
+    }
+    if (e === "-" && Quantity > 0) {
+      setQuantity(Quantity - 1);
+    }
+  };
   return (
     <>
       <tr className="grid grid-cols-4 border-b pb-4 mt-2 overflow-scroll min-w-[500px] no-scrollbar">
@@ -31,20 +47,25 @@ const CartRow = ({ product }) => {
               {product?.keyboardType}
             </p>
             <p className=" font-clashRegular text-sm">
-              $ {product?.price * product.availableQuantity}
+              $ {parseInt(product?.price) * Quantity}
             </p>
           </div>
         </td>
         <td className="col-span-1 flex flex-col  justify-center pb-[10%]">
           <QuantityBtn
-            productQuantity={product.availableQuantity}
+            productQuantity={Quantity}
             handleQuantity={handleQuantity}
           />
         </td>
         <td className="col-span-1 flex flex-col justify-center">
           <div className="flex justify-between">
-            <p className=" font-clashRegular text-sm">${product.price}</p>
-            <div className="bg-red-500 text-white flex justify-center items-center p-1 rounded-full active:scale-95 divide-blue-[.4s]">
+            <p className=" font-clashRegular text-sm">
+              ${parseInt(product?.price) * Quantity}
+            </p>
+            <div
+              onClick={() => deleteProductCart(deleteProductCart(id))}
+              className="bg-red-500 text-white flex justify-center items-center p-1 rounded-full active:scale-95 divide-blue-[.4s]"
+            >
               <svg
                 height="24"
                 width="24"

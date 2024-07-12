@@ -8,7 +8,31 @@ const CartApi = baseApi.injectEndpoints({
         method: "GET",
       }),
     }),
+    addProduct: builder.mutation({
+      query: (data) => ({
+        url: "/cart",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    deleteProductCart: builder.mutation({
+      query: (id) => ({
+        url: `/cart/${id}`,
+        method: "DELETE",
+      }),
+    }),
+    updateProductCart: builder.mutation({
+      query: (id) => ({
+        url: `/cart/${id}`,
+        method: "PATCH",
+      }),
+    }),
   }),
 });
 
-export const { useCartProductQuery } = CartApi;
+export const {
+  useCartProductQuery,
+  useAddProductMutation,
+  useDeleteProductCartMutation,
+  useUpdateProductCartMutation,
+} = CartApi;

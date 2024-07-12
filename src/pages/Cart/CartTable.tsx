@@ -5,6 +5,7 @@ type TCardRow = {
   _id: string;
   product: TProduct;
   email: string;
+  productQuantity: number;
 };
 
 type TCardProduct = {
@@ -37,18 +38,13 @@ const CartTable = ({ cartProduct }: TCardProduct) => {
         ))}
       </thead>
       <tbody className="h-[400px] overflow-auto no-scrollbar">
-        {/* {cartProducts?.map((cartProduct) => (
-              <CartTableRow
-                userID={userID}
-                handleSelected={handleSelected}
-                key={cartProduct._id}
-                selectedIds={selectedIds}
-                cartProduct={cartProduct}
-              />
-            ))} */}
-
         {cartProduct?.map((product: TCardRow, index: number) => (
-          <CartRow key={index} product={product?.product} />
+          <CartRow
+            key={index}
+            product={product?.product}
+            id={product?._id}
+            productQuantity={product?.productQuantity}
+          />
         ))}
       </tbody>
       <Button

@@ -1,7 +1,7 @@
 import { Button } from "antd";
 import React from "react";
 
-const CartSummery = () => {
+const CartSummery = ({ cartSummery }) => {
   return (
     <div className="lg:px-10 mt-10 lg:mt-0">
       <p className=" font-poppins font-bold text-lg md:text-xl pb-4 border-b">

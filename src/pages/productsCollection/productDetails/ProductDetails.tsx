@@ -3,16 +3,38 @@ import { useParams } from "react-router-dom";
 import ProductDetailsCarousal from "./ProductDetailsCarousal";
 import { useSingleProductQuery } from "../../../redux/features/products/productApi";
 import { useState } from "react";
+import QuantityBtn from "../../../components/quantitybtn/QuantityBtn";
+import { useAddProductMutation } from "../../../redux/features/cart/cartApi";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const [productQuantity, setProductQuantity] = useState(0);
   const { data, isLoading } = useSingleProductQuery(id);
   const product = data?.data;
-  console.log(product);
+  // console.log(product);
 
-  const handleAddToCart = () => {};
+  const [addProduct] = useAddProductMutation();
+  // add cart
+  console.log({ productQuantity });
+  const handleAddToCart = async (id: string) => {
+    const data = {
+      product: id,
+      productQuantity,
+      email: "mdekramulhassan168@gmail.com",
+    };
+    const result = addProduct(data);
+    console.log(result);
+  };
+
   const handleBookmarked = () => {};
+  const handleQuantity = (e: string) => {
+    if (e === "+") {
+      setProductQuantity(productQuantity + 1);
+    }
+    if (e === "-" && productQuantity > 0) {
+      setProductQuantity(productQuantity - 1);
+    }
+  };
 
   return (
     <>
@@ -50,29 +72,16 @@ const ProductDetails = () => {
                     {product?.availableQuantity}
                   </div>
                 </div>
-                {/* Quantity  */}
-                <div className="flex items-center gap-4 mt-3">
-                  <p
-                    // onClick={() => handleQuantity("-")}
-                    className="w-[20px] h-[20px] lg:w-[35px] lg:h-[35px] rounded-full bg-gray-200 flex justify-center items-center text-xl cursor-pointer active:scale-95 duration-300"
-                  >
-                    -
-                  </p>
-                  <p className="px-5 py-1 font-semibold border ">
-                    {productQuantity}
-                  </p>
-                  <p
-                    // onClick={() => handleQuantity("+")}
-                    className=" w-[20px] h-[20px] lg:w-[35px] lg:h-[35px] rounded-full bg-gray-200 flex justify-center items-center text-xl cursor-pointer active:scale-95 duration-300"
-                  >
-                    +
-                  </p>
-                </div>
+
+                <QuantityBtn
+                  handleQuantity={handleQuantity}
+                  productQuantity={productQuantity}
+                />
 
                 {/* Wishlist */}
                 <div className="flex flex-col gap-2 mt-10">
                   <Button
-                    onClick={handleAddToCart}
+                    onClick={() => handleAddToCart(product._id)}
                     className="py-2 text-white bg-black hover:bg-black"
                   >
                     Add To Cart

@@ -1,6 +1,17 @@
 import { Button } from "antd";
+import CartRow from "./CartRow";
+import { TProduct } from "../../redux/features/products/productApi";
+type TCardRow = {
+  _id: string;
+  product: TProduct;
+  email: string;
+};
 
-const CartTable = () => {
+type TCardProduct = {
+  cartProduct: TCardRow[];
+};
+const CartTable = ({ cartProduct }: TCardProduct) => {
+  console.log(cartProduct);
   const handleSelectAll = () => {};
   const handleDeleteSelected = () => {};
   return (
@@ -35,6 +46,10 @@ const CartTable = () => {
                 cartProduct={cartProduct}
               />
             ))} */}
+
+        {cartProduct?.map((product: TCardRow, index: number) => (
+          <CartRow key={index} product={product?.product} />
+        ))}
       </tbody>
       <Button
         onClick={handleDeleteSelected}

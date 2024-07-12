@@ -1,3 +1,7 @@
+import {
+  TProduct,
+  useProductQuery,
+} from "../../redux/features/products/productApi";
 import FilterProducts from "./FilterProducts";
 import PaginationCard from "./Pagination";
 import ProductHeader from "./ProcuctHeader";
@@ -61,6 +65,10 @@ const Products = () => {
       descriptions: "This is the main think",
     },
   ];
+  const { data: cards2, isLoading, error } = useProductQuery(undefined);
+  console.log(cards2);
+  // if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error loading products</div>;
   return (
     <div className="">
       <ProductHeader />
@@ -68,9 +76,14 @@ const Products = () => {
       <div>
         <h1 className="font-bold text-2xl text-center">Card Section</h1>
         <div className="grid lg:grid-cols-4 md:grid-cols-3  justify-center items-center">
-          {cards.map((card, index) => (
-            <ProductsCard key={index} {...card} />
-          ))}
+          {isLoading ? <div>Loading...</div> : ""}
+          {Array.isArray(cards2?.data) ? (
+            cards2?.data?.map((card: TProduct, index: number) => (
+              <ProductsCard key={index} {...card} />
+            ))
+          ) : (
+            <div>No products available</div>
+          )}
         </div>
       </div>
       <div className="flex justify-center items-center">

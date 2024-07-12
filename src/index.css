@@ -18,14 +18,14 @@ body.dark {
   color: white;
 }
 
-.banner-image1 {
+.banner-image2 {
   background: linear-gradient(to right, rgb(0 0 0 / 84%), rgb(175 12 12 / 35%)),
     url("https://i.ibb.co/72nv3qv/usetldr-12084257-u-12400777-image-format-y-QGDrv6-Zdxm-LU9-Q-1.png");
   background-size: cover;
 }
-.banner-image2 {
+.banner-image1 {
   background: linear-gradient(to right, rgb(0 0 0 / 84%), rgb(175 12 12 / 35%)),
-    url("https://i.ibb.co/MnG7gLG/Minimalist-Pastel-Pink-Mechanical-Keyboard.png");
+    url("https://res.cloudinary.com/dvtdneocc/image/upload/v1720710731/l6zbtiwckdxcbho59g5k.jpg");
   background-size: cover;
 }
 .banner-image3 {
@@ -35,7 +35,7 @@ body.dark {
 }
 .banner-image4 {
   background: linear-gradient(to right, rgb(0 0 0 / 84%), rgb(175 12 12 / 35%)),
-    url("https://i.ibb.co/1Gfth4W/Professional-Typing-on-Modern-Laptop.png");
+    url("https://res.cloudinary.com/dvtdneocc/image/upload/v1720710735/la8fwaiyc7x8vwmbxzcp.jpg");
   background-size: cover;
 }
 

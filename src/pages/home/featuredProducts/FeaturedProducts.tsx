@@ -1,28 +1,28 @@
 const brands = [
   {
     name: "Typing Lounge",
-    logo: "https://www.typinglounge.com/wp-content/uploads/tpl-logo-header-6.png",
+    logo: "	https://mechanicalkeyboards.com/cdn/shop/files/Ducky_Logo_d7a554dd-80df-459b-91d0-57043942be14.png?v=1707865840&width=550",
   },
   {
     name: "WIRED",
-    logo: "https://nuphy.com/cdn/shop/files/logo_web03_100x@2x.png?v=1626617933",
+    logo: "	https://mechanicalkeyboards.com/cdn/shop/files/HHKB_logo_gray.png?v=1707329074&width=550",
   },
 
   {
     name: "WIRED",
-    logo: "https://www.wired.com/verso/static/wired/assets/logo-header.svg",
+    logo: "https://mechanicalkeyboards.com/cdn/shop/files/MK-V3-Logo-_wide-format.png?v=1698782767&width=550",
   },
   {
     name: "WIKIMEDIA",
-    logo: "https://www.wikimedia.org/static/images/wmf-logo-2x.png",
+    logo: "https://mechanicalkeyboards.com/cdn/shop/files/keychron_logo.png?v=1700083951&width=550",
   },
   {
     name: "WIRED",
-    logo: "https://www.ryans.com/assets/images/ryans-logo.svg",
+    logo: "https://mechanicalkeyboards.com/cdn/shop/files/leopold_logo.png?v=1700083966&width=550",
   },
   {
     name: "WIRED",
-    logo: "https://www.pcmag.com/images/pcmag-hover.svg",
+    logo: "https://mechanicalkeyboards.com/cdn/shop/files/filco_logo.png?v=1700083992&width=550",
   },
 ];
 
@@ -31,7 +31,7 @@ const FeaturedProducts = () => {
     <div>
       <div className=" lg:w-[70%] mx-auto flex flex-wrap items-center  justify-center sm:justify-evenly h-[100px] sm:h-[150px] gap-2 sm:gap-0">
         {brands.map(({ logo }, index) => (
-          <img key={index} src={logo} alt="" className="h-[30%] lg:h-[40%]" />
+          <img key={index} src={logo} alt="" className="h-[20%] lg:h-[40%]" />
         ))}
       </div>
     </div>

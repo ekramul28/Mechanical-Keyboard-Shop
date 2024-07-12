@@ -1,21 +1,20 @@
 import { Avatar, Button, Card } from "antd";
 import { Link } from "react-router-dom";
+import { TProduct } from "../../redux/features/products/productApi";
 
 const { Meta } = Card;
-type TCard = {
-  _id: string;
-  image: string;
-};
-const ProductsCard = ({ _id }: TCard) => {
+
+const ProductsCard = ({ _id, image, title }: TProduct) => {
+  console.log(image);
   return (
     <div className="flex justify-center items-center gap-4 ">
       <Card
         style={{ width: 300, margin: "10px" }}
         cover={
           <img
-            className="p-3"
-            alt="example"
-            src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+            className="p-3 w-full h-40 object-cover"
+            alt={title}
+            src={image[0]}
           />
         }
         //     actions={[

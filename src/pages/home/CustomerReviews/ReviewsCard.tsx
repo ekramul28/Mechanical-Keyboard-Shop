@@ -35,13 +35,13 @@ const ReviewsCard = ({
             <div className="mt-5">
               <Rate allowHalf value={rating} disabled />
             </div>
-            <p className="testimonialText">{review}</p>
+            <p className="testimonialText my-3 font-bold">{review}</p>
             <div className="testimonialAuthor">
               <div className="testimonialAuthorDetails">
-                <p className="testimonialAuthorName">{authorName}</p>
+                <p className="testimonialAuthorName font-bold">{authorName}</p>
                 <p className="testimonialAuthorPosition">{authorPosition}</p>
               </div>
-              <p className="testimonialBrand">{brand}</p>
+              <p className="testimonialBrand ml-3 font-bold">{brand}</p>
             </div>
           </div>
         </div>

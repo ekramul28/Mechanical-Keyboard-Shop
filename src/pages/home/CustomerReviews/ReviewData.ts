@@ -8,7 +8,7 @@ export const Reviews = [
     authorName: "Jane Smith",
     authorPosition: "Fashion Blogger",
     authorCompany: "Style Hub",
-    brand: "Adidas",
+    brand: "Ducky",
     imageUrl:
       "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -21,7 +21,7 @@ export const Reviews = [
     authorName: "John Doe",
     authorPosition: "Marketing Manager",
     authorCompany: "ABC Inc",
-    brand: "NIKE",
+    brand: "FILCO",
     imageUrl:
       "https://images.unsplash.com/photo-1500048993953-d23a436266cf?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -34,7 +34,7 @@ export const Reviews = [
     authorName: "Jane Smith",
     authorPosition: "Fashion Blogger",
     authorCompany: "Style Hub",
-    brand: "Adidas",
+    brand: "Keychron",
     imageUrl:
       "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -47,7 +47,7 @@ export const Reviews = [
     authorName: "Alex Rodriguez",
     authorPosition: "Fitness Enthusiast",
     authorCompany: "FitLife",
-    brand: "Puma",
+    brand: "HIKB",
     imageUrl:
       "https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },

@@ -28,12 +28,10 @@ const brands = [
 
 const FeaturedProducts = () => {
   return (
-    <div>
-      <div className=" lg:w-[70%] mx-auto flex flex-wrap items-center  justify-center sm:justify-evenly h-[100px] sm:h-[150px] gap-2 sm:gap-0">
-        {brands.map(({ logo }, index) => (
-          <img key={index} src={logo} alt="" className="h-[20%] lg:h-[40%]" />
-        ))}
-      </div>
+    <div className=" lg:w-[70%] mx-auto flex flex-wrap items-center mt-12 justify-center sm:justify-evenly h-[100px] sm:h-[150px] gap-2 sm:gap-0">
+      {brands.map(({ logo }, index) => (
+        <img key={index} src={logo} alt="" className="h-[20%] lg:h-[40%]" />
+      ))}
     </div>
   );
 };

@@ -9,7 +9,7 @@ const ServiceAdvertisement = () => {
       >
         <Row gutter={16}>
           <Col xs={24} sm={12} md={6}>
-            <Card style={{ backgroundColor: "#FFE47F" }}>
+            <Card style={{ backgroundColor: "#000", color: "white" }}>
               <div>
                 <svg
                   height="28px"
@@ -34,7 +34,7 @@ const ServiceAdvertisement = () => {
             </Card>
           </Col>
           <Col xs={24} sm={12} md={6}>
-            <Card style={{ backgroundColor: "#E9EFFC" }}>
+            <Card style={{ backgroundColor: "#1a1a1a", color: "white" }}>
               <div>
                 <svg
                   height="28px"
@@ -59,7 +59,7 @@ const ServiceAdvertisement = () => {
             </Card>
           </Col>
           <Col xs={24} sm={12} md={6}>
-            <Card style={{ backgroundColor: "#EBD3C5" }}>
+            <Card style={{ backgroundColor: "#1a1a1a", color: "white" }}>
               <div>
                 <svg
                   height="28px"
@@ -84,7 +84,7 @@ const ServiceAdvertisement = () => {
             </Card>
           </Col>
           <Col xs={24} sm={12} md={6}>
-            <Card style={{ backgroundColor: "#EAEED6" }}>
+            <Card style={{ backgroundColor: "#000", color: "white" }}>
               <div>
                 <svg
                   height="28px"

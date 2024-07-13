@@ -21,8 +21,8 @@ const ReviewsCard = ({
   brand,
 }: TReview) => {
   return (
-    <div className="cardContainer ">
-      <div className="card " style={{ backgroundColor: color }}>
+    <div className="cardContainer text-white">
+      <div className="card rounded-xl" style={{ backgroundColor: color }}>
         <div className="testimonialContainer">
           <div className="testimonialImageContainer ">
             <img

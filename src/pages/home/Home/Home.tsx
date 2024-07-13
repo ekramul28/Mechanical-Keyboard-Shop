@@ -24,9 +24,11 @@ const Home = () => {
           Latest Product Update
         </h1>
         <div className="grid lg:grid-cols-4 md:grid-cols-3  justify-center items-center">
-          {latestSix.map((product: TProduct, index: number) => (
-            <ProductsCard key={index} {...product} />
-          ))}
+          {Array.isArray(latestSix)
+            ? latestSix.map((product: TProduct, index: number) => (
+                <ProductsCard key={index} {...product} />
+              ))
+            : "No product here"}
         </div>
         <p className="text-center my-5">
           <Link to="/product">

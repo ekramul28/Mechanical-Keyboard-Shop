@@ -1,18 +1,14 @@
-.reviewMain {
-  /* margin-top: 20px; */
-  /* position: relative; */
-}
 .cardContainer {
-  height: 100vh;
+  height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
   position: sticky;
-  top: 100px;
+  top: 60px;
 }
 .card {
   height: 500px;
-  width: 90%;
+  width: 97%;
 }
 
 .testimonialContainer {

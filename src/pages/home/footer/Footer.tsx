@@ -1,7 +1,7 @@
 import "./footer.css";
 const Footer = () => {
   return (
-    <div>
+    <div className="bg-[#0E1217]">
       <div className="pg-footer">
         <footer className="footer">
           <svg

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import QuantityBtn from "../../components/quantitybtn/QuantityBtn";
 import {
   useDeleteProductCartMutation,
@@ -20,7 +20,10 @@ const CartRow = ({ product, id, productQuantity }: TCardRow) => {
   );
   const [deleteProductCart] = useDeleteProductCartMutation();
   const [updateProductCart] = useUpdateProductCartMutation();
-  const handleSelected = (e: string, _id: string) => {};
+  const handleSelected = (e: ChangeEvent<HTMLInputElement>, _id: string) => {
+    console.log(e);
+    console.log(_id);
+  };
   const handleQuantity = async (e: string) => {
     if (e === "+") {
       setQuantity(Quantity + 1);
@@ -79,7 +82,7 @@ const CartRow = ({ product, id, productQuantity }: TCardRow) => {
               {product?.keyboardType}
             </p>
             <p className=" font-clashRegular text-sm">
-              $ {parseInt(product?.price) * Quantity}
+              $ {product?.price * Quantity}
             </p>
           </div>
         </td>
@@ -92,7 +95,7 @@ const CartRow = ({ product, id, productQuantity }: TCardRow) => {
         <td className="col-span-1 flex flex-col justify-center">
           <div className="flex justify-between">
             <p className=" font-clashRegular text-sm">
-              ${parseInt(product?.price) * Quantity}
+              ${product?.price * Quantity}
             </p>
             <div
               onClick={() => deleteProductCart(deleteProductCart(id))}

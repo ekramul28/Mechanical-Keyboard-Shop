@@ -8,7 +8,7 @@ import { Button, Select } from "antd";
 const FilterProducts = () => {
   const [cities, setCities] = useState("");
 
-  // console.log(cities);
+  console.log(cities);
 
   const handleKeyboardType = (label: string) => {
     setCities(label);

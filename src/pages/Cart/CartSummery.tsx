@@ -1,11 +1,11 @@
 import { Button } from "antd";
 import { useGetAllProductPriceQuery } from "../../redux/features/cart/cartApi";
+import { NavLink } from "react-router-dom";
 
 const CartSummery = () => {
   const email = "mdekramulhassan168@gmail.com";
   const { data } = useGetAllProductPriceQuery(email);
   const cartTotal = data?.data;
-  console.log(cartTotal);
   return (
     <div className="lg:px-10 mt-10 lg:mt-0">
       <p className=" font-poppins font-bold text-lg md:text-xl pb-4 border-b">
@@ -22,7 +22,9 @@ const CartSummery = () => {
         </div>
         <div className="flex justify-between items-center">
           <p>Shipping Fees</p>
-          <p>${cartTotal?.totalCart > 0 ? 50 : 0}</p>
+          <p>
+            ${cartTotal?.totalCart > 0 && cartTotal?.totalPrice > 100 ? 50 : 0}
+          </p>
         </div>
       </div>
       <div className="flex justify-between items-center pt-8 border-y pb-4">
@@ -31,12 +33,11 @@ const CartSummery = () => {
           {cartTotal ? parseInt(cartTotal.total) : 0}$
         </p>
       </div>
-      <Button
-        //   onClick={() => navigate("/checkout")}
-        className="w-full text-white py-3 mt-6 rounded-sm font-clashSemibold "
-      >
-        Check Out
-      </Button>
+      <NavLink to="/checkout">
+        <Button className="w-full bg-black text-white font-bold py-3 mt-6 rounded-sm font-clashSemibold ">
+          Check Out
+        </Button>
+      </NavLink>
       <div className="mt-4 text-[12px] text-center">
         <p>Shop Smart, Ship Free</p>
       </div>

@@ -7,7 +7,9 @@ const Root = () => {
     <>
       <NavBar />
       <div className="container primary-color ">
-        <Outlet />
+        <div className="min-h-screen">
+          <Outlet />
+        </div>
         <Footer />
       </div>
     </>

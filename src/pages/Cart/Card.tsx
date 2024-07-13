@@ -19,7 +19,7 @@ const Card = () => {
             </div>
           </div>
           <div className="lg:col-span-2">
-            <CartSummery cartSummery={cartProducts} />
+            <CartSummery />
           </div>
         </div>
       )}

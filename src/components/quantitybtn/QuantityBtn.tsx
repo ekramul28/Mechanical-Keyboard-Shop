@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+interface QuantityBtnProps {
+  productQuantity: number;
+  handleQuantity: (action: string) => void;
+}
 
-const QuantityBtn = ({ productQuantity, handleQuantity }) => {
+const QuantityBtn = ({ productQuantity, handleQuantity }: QuantityBtnProps) => {
   return (
     <div className="flex items-center gap-4 mt-3">
       <p

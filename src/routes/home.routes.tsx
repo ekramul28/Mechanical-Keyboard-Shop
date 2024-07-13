@@ -3,7 +3,6 @@ import Contact from "../pages/home/contactUs/Contact";
 import Home from "../pages/home/Home/Home";
 import Products from "../pages/productsCollection/Products";
 import ProductDetails from "../pages/productsCollection/productDetails/ProductDetails";
-import { Children } from "react";
 
 export const homeRoute = [
   {

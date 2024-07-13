@@ -47,14 +47,6 @@ const CartRow = ({ product, id, productQuantity }: TCardRow) => {
       const result = await updateProductCart(updateData);
       console.log(result);
     }
-    // const updateData: TUpdateData = {
-    //   id: id,
-    //   data: {
-    //     productQuantity: Quantity + 1,
-    //   },
-    // };
-    // const result = await updateProductCart(updateData);
-    // console.log(result);
   };
   return (
     <>

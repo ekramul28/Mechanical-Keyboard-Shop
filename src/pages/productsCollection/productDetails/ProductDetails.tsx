@@ -5,7 +5,7 @@ import { useSingleProductQuery } from "../../../redux/features/products/productA
 import { useState } from "react";
 import QuantityBtn from "../../../components/quantitybtn/QuantityBtn";
 import { useAddProductMutation } from "../../../redux/features/cart/cartApi";
-
+import { toast } from "sonner";
 const ProductDetails = () => {
   const { id } = useParams();
   const [productQuantity, setProductQuantity] = useState(0);
@@ -15,15 +15,23 @@ const ProductDetails = () => {
 
   const [addProduct] = useAddProductMutation();
   // add cart
-  console.log({ productQuantity });
   const handleAddToCart = async (id: string) => {
     const data = {
       product: id,
       productQuantity,
       email: "mdekramulhassan168@gmail.com",
     };
-    const result = addProduct(data);
-    console.log(result);
+    try {
+      const result = await addProduct(data);
+      if (result?.data?.success) {
+        toast.success("Product Add Successfully");
+      }
+    } catch (error) {
+      console.log(error);
+      // if (error.data.error) {
+      //   toast.error("Product already added");
+      // }
+    }
   };
 
   const handleBookmarked = () => {};

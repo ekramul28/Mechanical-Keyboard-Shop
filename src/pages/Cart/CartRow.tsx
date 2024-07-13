@@ -1,25 +1,57 @@
 import { useState } from "react";
 import QuantityBtn from "../../components/quantitybtn/QuantityBtn";
-import { useDeleteProductCartMutation } from "../../redux/features/cart/cartApi";
+import {
+  useDeleteProductCartMutation,
+  useUpdateProductCartMutation,
+} from "../../redux/features/cart/cartApi";
 import { TProduct } from "../../redux/features/products/productApi";
 type TCardRow = {
   product: TProduct;
   id: string;
   productQuantity: number;
 };
+type TUpdateData = {
+  id: string;
+  data: object;
+};
 const CartRow = ({ product, id, productQuantity }: TCardRow) => {
   const [Quantity, setQuantity] = useState(
     productQuantity ? productQuantity : 0
   );
   const [deleteProductCart] = useDeleteProductCartMutation();
+  const [updateProductCart] = useUpdateProductCartMutation();
   const handleSelected = (e: string, _id: string) => {};
-  const handleQuantity = (e: string) => {
+  const handleQuantity = async (e: string) => {
     if (e === "+") {
       setQuantity(Quantity + 1);
+      const updateData: TUpdateData = {
+        id: id,
+        data: {
+          productQuantity: Quantity + 1,
+        },
+      };
+      const result = await updateProductCart(updateData);
+      console.log(result);
     }
     if (e === "-" && Quantity > 0) {
       setQuantity(Quantity - 1);
+      const updateData: TUpdateData = {
+        id: id,
+        data: {
+          productQuantity: Quantity - 1,
+        },
+      };
+      const result = await updateProductCart(updateData);
+      console.log(result);
     }
+    // const updateData: TUpdateData = {
+    //   id: id,
+    //   data: {
+    //     productQuantity: Quantity + 1,
+    //   },
+    // };
+    // const result = await updateProductCart(updateData);
+    // console.log(result);
   };
   return (
     <>

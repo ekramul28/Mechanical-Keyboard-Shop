@@ -5,7 +5,10 @@ import { TProduct } from "../../redux/features/products/productApi";
 const { Meta } = Card;
 
 const ProductsCard = ({ _id, image, title }: TProduct) => {
-  console.log(image);
+
+
+  
+
   return (
     <div className="flex justify-center items-center gap-4 ">
       <Card

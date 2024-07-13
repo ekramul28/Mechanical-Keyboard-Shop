@@ -6,12 +6,10 @@ import ServiceAdvertisement from "../serviceAdvertisement/ServiceAdvertisement";
 const Home = () => {
   return (
     <div>
-      {/* <NavBar></NavBar> */}
       <HeroSection />
       <FeaturedProducts />
       <CustomerReview />
       <ServiceAdvertisement />
-      {/* <Footer></Footer> */}
     </div>
   );
 };

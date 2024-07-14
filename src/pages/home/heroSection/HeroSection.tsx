@@ -1,4 +1,4 @@
-import { Button, Card, Carousel } from "antd";
+import { Card, Carousel } from "antd";
 
 const contentStyle: React.CSSProperties = {
   height: "600px",

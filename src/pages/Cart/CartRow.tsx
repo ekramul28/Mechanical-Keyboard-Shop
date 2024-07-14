@@ -50,9 +50,10 @@ const CartRow = ({ product, id, productQuantity }: TCardRow) => {
   };
   return (
     <>
-      <tr className="grid grid-cols-4 border-b pb-4 mt-2 overflow-scroll min-w-[500px] no-scrollbar">
+      <tr className="grid grid-cols-4 border-b py-4 my-2 bg-black rounded text-white min-w-[500px] no-scrollbar">
         <td className="flex  col-span-2 justify-between">
           <input
+            className="ml-4"
             type="checkbox"
             name=""
             id=""
@@ -67,13 +68,11 @@ const CartRow = ({ product, id, productQuantity }: TCardRow) => {
             />
           </div>
           <div className="flex flex-col justify-center w-[50%] gap-1">
-            <p className=" font-poppins font-bold text-sm md:text-base">
-              {product?.title}
-            </p>
+            <p className=" font-bold text-sm md:text-base">{product?.title}</p>
             <p className="text-[10px] lg:text-[12px] text-gray-400">
               {product?.keyboardType}
             </p>
-            <p className=" font-clashRegular text-sm">
+            <p className=" font-clashRegular text-sm font-bold">
               $ {product?.price * Quantity}
             </p>
           </div>
@@ -85,13 +84,13 @@ const CartRow = ({ product, id, productQuantity }: TCardRow) => {
           />
         </td>
         <td className="col-span-1 flex flex-col justify-center">
-          <div className="flex justify-between">
-            <p className=" font-clashRegular text-sm">
+          <div className="flex justify-around items-center">
+            <p className=" font-clashRegular text-sm font-bold">
               ${product?.price * Quantity}
             </p>
             <div
               onClick={() => deleteProductCart(deleteProductCart(id))}
-              className="bg-red-500 text-white flex justify-center items-center p-1 rounded-full active:scale-95 divide-blue-[.4s]"
+              className="bg-red-500 text-white  flex justify-center items-center p-1 rounded-full active:scale-95 divide-blue-[.4s]"
             >
               <svg
                 height="24"

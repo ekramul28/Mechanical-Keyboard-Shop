@@ -1,21 +1,20 @@
 import { Button } from "antd";
 import { Link } from "react-router-dom";
 
-const SuccessPage = () => {
+const ErrorPage = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-black mt-6">
       <div className="bg-white p-12 rounded-lg shadow-lg text-center">
-        <div className="flex items-center justify-center w-52 h-52 bg-green-100 rounded-full mx-auto mb-6">
-          <i className="text-green-500 text-8xl leading-none">✓</i>
+        <div className="flex items-center justify-center w-52 h-52 bg-red-100 rounded-full mx-auto mb-6">
+          <i className="text-red-500 text-8xl leading-none">🥲</i>
         </div>
-        <h1 className="text-green-600 font-bold text-4xl mb-2">Success</h1>
+        <h1 className="text-red-600 font-bold text-4xl mb-2">ERROR</h1>
         <p className="text-gray-700 text-xl">
-          We receive your Payment Thanks for buying a product ;
-          <br /> we'll be in touch shortly!
+          Something went wrong; please try again!
         </p>
         <Link to="/product">
           <Button className="mt-3 bg-black text-white font-bold py-6">
-            Continue Shopping
+            Try Again
           </Button>
         </Link>
       </div>
@@ -23,4 +22,4 @@ const SuccessPage = () => {
   );
 };
 
-export default SuccessPage;
+export default ErrorPage;

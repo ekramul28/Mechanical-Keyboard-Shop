@@ -7,6 +7,7 @@ import Contact from "../pages/home/contactUs/Contact";
 import ProductDetails from "../pages/productsCollection/productDetails/ProductDetails";
 import Card from "../pages/Cart/Card";
 import Checkout from "../pages/checkout/Checkout";
+import SuccessPage from "../pages/success/Success";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "checkout",
         element: <Checkout />,
+      },
+      {
+        path: "success",
+        element: <SuccessPage />,
       },
       {
         path: "about",

@@ -11,7 +11,6 @@ const ProductDetails = () => {
   const [productQuantity, setProductQuantity] = useState(0);
   const { data, isLoading } = useSingleProductQuery(id);
   const product = data?.data;
-  // console.log(product);
 
   const [addProduct] = useAddProductMutation();
   // add cart
@@ -28,9 +27,6 @@ const ProductDetails = () => {
       }
     } catch (error) {
       console.log(error);
-      // if (error.data.error) {
-      //   toast.error("Product already added");
-      // }
     }
   };
 

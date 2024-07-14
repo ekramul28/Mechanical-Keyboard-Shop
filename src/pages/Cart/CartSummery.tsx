@@ -1,19 +1,22 @@
 import { Button } from "antd";
-import { useGetAllProductPriceQuery } from "../../redux/features/cart/cartApi";
-import { NavLink } from "react-router-dom";
+import {
+  useCartProductQuery,
+  useGetAllProductPriceQuery,
+} from "../../redux/features/cart/cartApi";
 import { loadStripe } from "@stripe/stripe-js";
+import { useNavigate } from "react-router-dom";
 
 const CartSummery = () => {
   const email = "mdekramulhassan168@gmail.com";
   const { data } = useGetAllProductPriceQuery(email);
   const cartTotal = data?.data;
-  const cart: object[] = [];
+
   const handelMakePayment = async () => {
     const stripe = await loadStripe(
       "pk_test_51OEnEtL2pc8251OJIpKkvcI0a5dYheFy8fPTEUoGZcKf5ivh3KFiM2V2G7uP0ks4pIL9oViusE7QFpW76DP4I85100LbdwsY0M"
     );
     const body = {
-      products: cart,
+      email: "mdekramulhassan168@gmail.com",
     };
     const headers = {
       "Content-Type": "application/json",
@@ -28,12 +31,16 @@ const CartSummery = () => {
     );
 
     const session = await response.json();
-    const result = stripe?.redirectToCheckout({
-      sessionId: session.id,
-    });
-    if (result.error) {
-      console.log(error);
+    if (stripe) {
+      console.log(session.data.url);
+      const result = stripe.redirectToCheckout({
+        sessionId: session?.data.id,
+      });
+    } else {
+      console.error("Stripe is not initialized.");
     }
+
+    console.log(result);
   };
 
   return (

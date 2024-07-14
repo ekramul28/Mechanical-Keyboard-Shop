@@ -5,14 +5,16 @@ const CheckoutOrder = () => {
   const cartTotal = data?.data;
   return (
     <div className="order-4 md:order-1 w-[90%] mx-auto lg:col-span-2">
-      <h1 className=" mb-16 border-b-2 border-[#EBEBEB] w-max font-medium">
+      <h1 className=" mb-16 border-b-2 border-[#EBEBEB] w-max font-bold text-2xl">
         Your Order
       </h1>
       <table className="w-full">
         <thead className="w-full ">
           <tr className="grid grid-cols-5 text-left border-b-2 border-[#050505] pb-1">
-            <th className="col-span-3">Product</th>
-            <th className="col-span-2 pb-5">Subtotal</th>
+            <th className="col-span-3 clear-start font-bold text-xl">
+              Product
+            </th>
+            <th className="col-span-2 pb-5 font-bold text-xl">Subtotal</th>
           </tr>
         </thead>
         <tbody className="">

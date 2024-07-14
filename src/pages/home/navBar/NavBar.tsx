@@ -37,10 +37,7 @@ const NavBar = () => {
       name: "Cart",
       label: <NavLink to="/cart">Cart</NavLink>,
     },
-    {
-      name: "Checkout",
-      label: <NavLink to="/checkout">Checkout</NavLink>,
-    },
+
     {
       name: "About",
       label: <NavLink to="/about">About</NavLink>,

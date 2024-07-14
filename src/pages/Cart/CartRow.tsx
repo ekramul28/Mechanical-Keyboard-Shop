@@ -1,5 +1,9 @@
 import { ChangeEvent, useState } from "react";
 import QuantityBtn from "../../components/quantitybtn/QuantityBtn";
+import { Button, Modal, Space } from "antd";
+
+const { confirm } = Modal;
+
 import {
   useDeleteProductCartMutation,
   useUpdateProductCartMutation,
@@ -24,6 +28,24 @@ const CartRow = ({ product, id, productQuantity }: TCardRow) => {
     console.log(e);
     console.log(_id);
   };
+
+  const handleDelete = (id: string, title: string) => {
+    console.log(id);
+    confirm({
+      title: "Are you sure delete this Product?",
+      content: `${title}`,
+      okText: "Yes",
+      okType: "danger",
+      cancelText: "No",
+      onOk() {
+        deleteProductCart(deleteProductCart(id));
+      },
+      onCancel() {
+        ("");
+      },
+    });
+  };
+
   const handleQuantity = async (e: string) => {
     if (e === "+") {
       setQuantity(Quantity + 1);
@@ -89,7 +111,7 @@ const CartRow = ({ product, id, productQuantity }: TCardRow) => {
               ${product?.price * Quantity}
             </p>
             <div
-              onClick={() => deleteProductCart(deleteProductCart(id))}
+              onClick={() => handleDelete(id, product?.title)}
               className="bg-red-500 text-white  flex justify-center items-center p-1 rounded-full active:scale-95 divide-blue-[.4s]"
             >
               <svg

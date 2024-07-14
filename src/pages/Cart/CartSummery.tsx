@@ -1,10 +1,7 @@
 import { Button } from "antd";
-import {
-  useCartProductQuery,
-  useGetAllProductPriceQuery,
-} from "../../redux/features/cart/cartApi";
+import { useGetAllProductPriceQuery } from "../../redux/features/cart/cartApi";
 import { loadStripe } from "@stripe/stripe-js";
-import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 const CartSummery = () => {
   const email = "mdekramulhassan168@gmail.com";
@@ -21,6 +18,13 @@ const CartSummery = () => {
     const headers = {
       "Content-Type": "application/json",
     };
+
+    if (cartTotal?.totalPrice < 10) {
+      toast.error("No Product quantity ");
+      return;
+    }
+    console.log("ok");
+
     const response = await fetch(
       `http://localhost:5000/api/v1/Create-checkout-session`,
       {
@@ -32,15 +36,13 @@ const CartSummery = () => {
 
     const session = await response.json();
     if (stripe) {
-      console.log(session.data.url);
       const result = stripe.redirectToCheckout({
         sessionId: session?.data.id,
       });
+      console.log(result);
     } else {
       console.error("Stripe is not initialized.");
     }
-
-    console.log(result);
   };
 
   return (

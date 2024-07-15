@@ -25,12 +25,20 @@ const CartApi = baseApi.injectEndpoints({
       providesTags: ["cart2"],
     }),
     deleteProductCart: builder.mutation({
-      query: (id) => ({
-        url: `/cart/${id}`,
+      query: (data) => ({
+        url: `/cart`,
         method: "DELETE",
+        body: data,
       }),
       invalidatesTags: ["cart", "cart2"],
     }),
+    // deleteSingleProductCart: builder.mutation({
+    //   query: () => ({
+    //     url: `/cart/:`,
+    //     method: "DELETE",
+    //   }),
+    //   invalidatesTags: ["cart", "cart2"],
+    // }),
     updateProductCart: builder.mutation({
       query: (updateData) => ({
         url: `/cart/${updateData.id}`,

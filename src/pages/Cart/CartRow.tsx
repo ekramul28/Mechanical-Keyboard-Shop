@@ -13,24 +13,27 @@ type TCardRow = {
   product: TProduct;
   id: string;
   productQuantity: number;
+  handleSelected: (id: string, checked: boolean) => void;
+  selectedIds: Record<string, boolean>;
 };
 type TUpdateData = {
   id: string;
   data: object;
 };
-const CartRow = ({ product, id, productQuantity }: TCardRow) => {
+const CartRow = ({
+  product,
+  id,
+  productQuantity,
+  handleSelected,
+  selectedIds,
+}: TCardRow) => {
   const [Quantity, setQuantity] = useState(
     productQuantity ? productQuantity : 0
   );
   const [deleteProductCart] = useDeleteProductCartMutation();
   const [updateProductCart] = useUpdateProductCartMutation();
-  const handleSelected = (e: ChangeEvent<HTMLInputElement>, _id: string) => {
-    console.log(e);
-    console.log(_id);
-  };
 
   const handleDelete = (id: string, title: string) => {
-    console.log(id);
     confirm({
       title: "Are you sure delete this Product?",
       content: `${title}`,
@@ -38,7 +41,7 @@ const CartRow = ({ product, id, productQuantity }: TCardRow) => {
       okType: "danger",
       cancelText: "No",
       onOk() {
-        deleteProductCart(deleteProductCart(id));
+        deleteProductCart(deleteProductCart([id]));
       },
       onCancel() {
         ("");
@@ -78,9 +81,9 @@ const CartRow = ({ product, id, productQuantity }: TCardRow) => {
             className="ml-4"
             type="checkbox"
             name=""
-            id=""
-            onChange={(e) => handleSelected(e, product._id)}
-            // checked={selectedIds[_id] || false}
+            id={id}
+            onChange={(e) => handleSelected(e, id)}
+            checked={selectedIds[id] || false}
           />
           <div className="w-[15%] lg:w-[20%] ">
             <img
@@ -132,7 +135,6 @@ const CartRow = ({ product, id, productQuantity }: TCardRow) => {
                 ></path>
               </svg>
             </div>
-            {/* <DeleteButton id={_id} /> */}
           </div>
         </td>
       </tr>

@@ -1,7 +1,9 @@
 import { Button } from "antd";
 import CartRow from "./CartRow";
 import { TProduct } from "../../redux/features/products/productApi";
-import { useAppDispatch } from "../../redux/hooks";
+import { useState } from "react";
+import { useDeleteProductCartMutation } from "../../redux/features/cart/cartApi";
+import { toast } from "sonner";
 type TCardRow = {
   _id: string;
   product: TProduct;
@@ -12,9 +14,52 @@ type TCardRow = {
 type TCardProduct = {
   cartProduct: TCardRow[];
 };
+type SelectedIdsType = { [key: string]: boolean };
+
 const CartTable = ({ cartProduct }: TCardProduct) => {
-  const handleSelectAll = () => {};
-  const handleDeleteSelected = () => {};
+  const [deleteProductCart] = useDeleteProductCartMutation();
+
+  const [selectedIds, setSelectedIds] = useState<SelectedIdsType>({});
+
+  const handleSelected = (id: string, e: { target: HTMLInputElement }) => {
+    setSelectedIds((prev) => ({
+      ...prev,
+      [id]: (e.target as HTMLInputElement).checked,
+    }));
+  };
+
+  const handleSelectAll: React.MouseEventHandler<HTMLTableRowElement> = (e) => {
+    const ids = cartProduct?.map(({ _id }) => _id);
+    ids.forEach((id) => {
+      setSelectedIds((prev) => ({
+        ...prev,
+        [id]: (e.target as HTMLInputElement).checked,
+      }));
+    });
+  };
+
+  const handleDeleteSelected = async () => {
+    try {
+      const selectedProduct: string[] = Object.keys(selectedIds).filter(
+        (id) => selectedIds[id]
+      );
+      console.log(selectedProduct);
+
+      if (selectedProduct.length === 0) {
+        toast.error("No product selected!!");
+        return;
+      }
+      const result = await deleteProductCart(selectedProduct);
+      console.log(result);
+
+      if (result.data.success) {
+        toast.error("Products removed from cart");
+      }
+    } catch (error) {
+      toast.error("Something went worng");
+    }
+  };
+
   return (
     <table className=" no-scrollbar  w-full  ">
       {/* Header */}
@@ -44,6 +89,8 @@ const CartTable = ({ cartProduct }: TCardProduct) => {
         {cartProduct?.map((product: TCardRow, index: number) => (
           <CartRow
             key={index}
+            handleSelected={handleSelected}
+            selectedIds={selectedIds}
             product={product?.product}
             id={product?._id}
             productQuantity={product?.productQuantity}

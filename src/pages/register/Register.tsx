@@ -1,4 +1,6 @@
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { useCreateUserMutation } from "../../redux/features/Auth/authApi";
 type TRegister = {
   username: string;
   email: string;
@@ -6,10 +8,32 @@ type TRegister = {
   conformPassword: string;
 };
 const Register = () => {
-  const { register, handleSubmit } = useForm<TRegister>();
-  const onSubmit: SubmitHandler<TRegister> = (data) => {
+  const [createUser] = useCreateUserMutation();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors },
+  } = useForm<TRegister>();
+
+  const onSubmit: SubmitHandler<TRegister> = async (data) => {
     console.log(data);
+
+    const postData = {
+      username: data.username,
+      email: data.email,
+      password: data.password,
+    };
+    console.log({ postData });
+    const result = await createUser(postData);
+    console.log(result);
+    if (result?.data.success) {
+      toast.success("register successful");
+      reset();
+    }
   };
+  console.log();
   return (
     <div className=" min-h-screen py-12 w-full  flex justify-center items-center ">
       <div className="absolute w-[200px] h-[200px] hidden md:block mb-96 ml-96 lg:ml-[460px] lg:mb-[460px] bg-gradient-to-r from-[#1845ad] to-[#23a2f6] rounded-full "></div>
@@ -27,33 +51,42 @@ const Register = () => {
             Username
           </label>
           <input
-            {...register("username")}
+            {...register("username", { required: true })}
             type="text"
             placeholder="Email or Phone"
             id="username"
             className="block w-full h-12 mt-2 text-sm font-light   bg-opacity-10 rounded-md px-3 focus:outline-none placeholder:text-gray-300"
           />
+          {errors.username && (
+            <span className="text-red-400">This field is required</span>
+          )}
           <label htmlFor="email" className="block mt-8 text-sm font-medium ">
             Email
           </label>
           <input
-            {...register("email")}
+            {...register("email", { required: true })}
             type="email"
             placeholder="Email or Phone"
             id="email"
             className="block w-full h-12 mt-2 text-sm font-light   bg-opacity-10 rounded-md px-3 focus:outline-none placeholder:text-gray-300"
           />
-
+          {errors.email && (
+            <span className="text-red-400">This field is required</span>
+          )}
           <label htmlFor="password" className="block mt-8 text-sm font-medium ">
             Password
           </label>
           <input
-            {...register("password")}
+            {...register("password", { required: true })}
             type="password"
             placeholder="Password"
             id="password"
             className="block w-full h-12 mt-2 text-sm font-light   bg-opacity-10 rounded-md px-3 focus:outline-none placeholder:text-gray-300"
           />
+          {errors.password && (
+            <span className="text-red-400">This field is required</span>
+          )}
+
           <label
             htmlFor="conform-password"
             className="block mt-8 text-sm font-medium "
@@ -61,19 +94,31 @@ const Register = () => {
             Conform Password
           </label>
           <input
-            {...register("conformPassword")}
+            {...register("conformPassword", { required: true })}
             type="conform-password"
             placeholder="conform password"
             id="conform-password"
             className="block w-full h-12 mt-2 text-sm font-light   bg-opacity-10 rounded-md px-3 focus:outline-none placeholder:text-gray-300"
           />
-
-          <button
-            type="submit"
-            className="w-full mt-12 py-3 text-lg font-semibold text-white bg-black rounded-md cursor-pointer"
-          >
-            Register
-          </button>
+          {errors.conformPassword && (
+            <span className="text-red-400">This field is required</span>
+          )}
+          {watch("password") == watch("conformPassword") &&
+          watch("password") ? (
+            <button
+              type="submit"
+              className={`w-full mt-12 py-3 text-lg font-semibold text-white bg-black rounded-md cursor-pointer`}
+            >
+              Register
+            </button>
+          ) : (
+            <button
+              disabled
+              className={`w-full mt-12 py-3  text-lg font-semibold bg-gray-500 text-gray-300 cursor-not-allowed rounded-md `}
+            >
+              Register
+            </button>
+          )}
         </form>
       </div>
     </div>

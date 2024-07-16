@@ -1,16 +1,21 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { useLoginUserMutation } from "../../redux/features/Auth/authApi";
 
 type TInputs = {
-  username: string;
+  email: string;
   password: string;
 };
 const Login = () => {
   const { register, handleSubmit } = useForm<TInputs>();
+  const [loginUser] = useLoginUserMutation();
 
-  const onSubmit: SubmitHandler<TInputs> = (data) => {
-    console.log(data);
+  const onSubmitLogin: SubmitHandler<TInputs> = async (data) => {
+    console.log({ data });
+    const result = await loginUser(data);
+    console.log(result);
   };
+
   return (
     <>
       <div className=" min-h-screen py-6 w-full  flex justify-center items-center ">
@@ -18,22 +23,19 @@ const Login = () => {
         <div className="absolute w-[200px] hidden md:block h-[200px] -mb-96 mt-40 -ml-96 bg-gradient-to-r from-[#ff512f] to-[#f09819] rounded-full "></div>
         <div className="flex justify-center items-center ">
           <form
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleSubmit(onSubmitLogin)}
             className="relative w-[400px] mt-20 h-full  rounded-2xl backdrop-filter backdrop-blur-md border-2 border-opacity-10 shadow-lg p-8 "
           >
             <h3 className="text-4xl  text-center font-extrabold">Login Here</h3>
 
-            <label
-              htmlFor="username"
-              className="block mt-8 text-sm font-medium "
-            >
-              Username
+            <label htmlFor="email" className="block mt-8 text-sm font-medium ">
+              Email
             </label>
             <input
-              {...register("username")}
-              type="text"
+              {...register("email")}
+              type="email"
               placeholder="Email or Phone"
-              id="username"
+              id="email"
               className="block w-full h-12 mt-2 text-sm font-light   bg-opacity-10 rounded-md px-3 focus:outline-none placeholder:text-gray-300"
             />
 

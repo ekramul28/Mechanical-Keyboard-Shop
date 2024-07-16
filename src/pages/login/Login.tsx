@@ -1,19 +1,35 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useLoginUserMutation } from "../../redux/features/Auth/authApi";
+import { toast } from "sonner";
+import { useAppDispatch } from "../../redux/hooks";
+import { setUser, TUser } from "../../redux/features/Auth/authSlice";
+import { verifyToken } from "../../utils/verifyToken";
 
 type TInputs = {
   email: string;
   password: string;
 };
 const Login = () => {
-  const { register, handleSubmit } = useForm<TInputs>();
+  const { register, handleSubmit, reset } = useForm<TInputs>();
   const [loginUser] = useLoginUserMutation();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const onSubmitLogin: SubmitHandler<TInputs> = async (data) => {
-    console.log({ data });
-    const result = await loginUser(data);
-    console.log(result);
+    try {
+      const result = await loginUser(data).unwrap();
+      if (result.success) {
+        reset();
+        const user = verifyToken(result.data.accessToken) as TUser;
+        console.log({ user });
+        dispatch(setUser({ user: user, token: result.data.accessToken }));
+        toast.success("Login successfully");
+        navigate("/");
+      }
+    } catch (error) {
+      toast.error("Something went wrong");
+    }
   };
 
   return (

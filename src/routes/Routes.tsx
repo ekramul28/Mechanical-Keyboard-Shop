@@ -9,6 +9,7 @@ import Card from "../pages/Cart/Card";
 import Checkout from "../pages/checkout/Checkout";
 import SuccessPage from "../pages/success/Success";
 import ErrorPage from "../pages/Errorpage/ErrorPage";
+import Login from "../pages/login/Login";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,14 @@ const router = createBrowserRouter([
       {
         path: "success",
         element: <SuccessPage />,
+      },
+      {
+        path: "error",
+        element: <ErrorPage />,
+      },
+      {
+        path: "login",
+        element: <Login />,
       },
       {
         path: "error",

@@ -1,5 +1,5 @@
 import { Badge, Button, Layout, Menu, MenuProps } from "antd";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { ReactNode } from "react";
 import { useGetAllProductPriceQuery } from "../../../redux/features/cart/cartApi";
 
@@ -103,9 +103,11 @@ const NavBar = () => {
             </Badge>
           </div>
         </NavLink>
-        <Button type="primary" style={{ marginLeft: "10px" }}>
-          Login
-        </Button>
+        <Link to="/login">
+          <Button className="ml-3 py-5 font-bold bg-black text-white">
+            Login
+          </Button>
+        </Link>
 
         {/* <Switch
           checked={theme === "dark"}

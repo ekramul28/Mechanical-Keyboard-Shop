@@ -1,15 +1,25 @@
 import { Button, Card, Rate } from "antd";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { TProduct } from "../../redux/features/products/productApi";
 import { useAddProductMutation } from "../../redux/features/cart/cartApi";
 import { toast } from "sonner";
 
-const ProductsCard = ({ _id, image, title, rating, price }: TProduct) => {
+const ProductsCard = ({
+  _id,
+  image,
+  title,
+  rating,
+  price,
+  keyboardType,
+}: TProduct) => {
   const [addProduct] = useAddProductMutation();
   const handleAddToCart = async (id: string) => {
     const data = {
       product: id,
-      productQuantity: 0,
+      title,
+      image: image[0],
+      keyboardType,
+      productQuantity: 1,
       email: "mdekramulhassan168@gmail.com",
     };
     try {
@@ -17,8 +27,8 @@ const ProductsCard = ({ _id, image, title, rating, price }: TProduct) => {
       if (result?.data?.success) {
         toast.success("Product Add Successfully");
       }
-      if (result?.error?.data) {
-        toast.success(`${result?.error?.data?.message}`);
+      if (result?.error) {
+        toast.error("Already Added");
       }
       console.log(result);
     } catch (error) {

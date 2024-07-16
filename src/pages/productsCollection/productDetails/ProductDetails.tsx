@@ -54,23 +54,23 @@ const ProductDetails = () => {
               </h3>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-5 mt-10 gap-8 md:gap-0">
+            <div className="grid grid-cols-1 md:grid-cols-5 mt-10 gap-8 md:gap-0 min-h-[650px] justify-center items-center">
               <div className="md:col-span-3 text-center">
                 <ProductDetailsCarousal images={product?.image} />
               </div>
               <div className="flex flex-col gap-2 md:col-span-2 ">
                 <h1 className="text-4xl font-bold">Name</h1>
-                <p className="  font-clashRegular text-gray-600 text-sm">
+                <p className="  font-clashRegular text-gray-600 text-sm font-bold">
                   {product?.title}
                 </p>
                 <div className="flex justify-between items-center">
                   <p className="text-xl font-semibold">${product?.price}</p>
                   <Rate value={product.rating} />
                 </div>
-                <p className="text-sm mt-10 text-gray-600">
+                <p className="text-lg mt-10 text-gray-600">
                   {product?.description}
                 </p>
-                <p className="mt-3 font-medium">Available Quantity</p>
+                <p className="mt-3 font-bold">Available Quantity</p>
                 <div className="flex  items-center gap-4">
                   <div className="w-[35px] h-[35px]  flex  justify-center items-center text-sm bg-white text-black border-black border duration-[.4s] cursor-pointer hover:bg-black hover:text-white">
                     {product?.availableQuantity}
@@ -86,13 +86,13 @@ const ProductDetails = () => {
                 <div className="flex flex-col gap-2 mt-10">
                   <Button
                     onClick={() => handleAddToCart(product._id)}
-                    className="py-2 text-white bg-black hover:bg-black"
+                    className=" text-white bg-black hover:bg-black py-6 font-bold"
                   >
                     Add To Cart
                   </Button>
                   <Button
                     onClick={handleBookmarked}
-                    className="py-2 text-black bg-white border border-black "
+                    className=" text-black bg-white border border-black py-6 font-bold"
                   >
                     Save To Wishlist
                   </Button>

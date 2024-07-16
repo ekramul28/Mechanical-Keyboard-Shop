@@ -14,6 +14,7 @@ const CartSummery = () => {
     );
     const body = {
       email: "mdekramulhassan168@gmail.com",
+      total: cartTotal.total,
     };
     const headers = {
       "Content-Type": "application/json",
@@ -23,7 +24,6 @@ const CartSummery = () => {
       toast.error("No Product quantity ");
       return;
     }
-    console.log("ok");
 
     const response = await fetch(
       `http://localhost:5000/api/v1/Create-checkout-session`,
@@ -35,6 +35,7 @@ const CartSummery = () => {
     );
 
     const session = await response.json();
+    console.log(session);
     if (stripe) {
       const result = stripe.redirectToCheckout({
         sessionId: session?.data.id,

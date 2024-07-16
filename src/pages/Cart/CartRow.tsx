@@ -1,6 +1,6 @@
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import QuantityBtn from "../../components/quantitybtn/QuantityBtn";
-import { Button, Modal, Space } from "antd";
+import { Modal } from "antd";
 
 const { confirm } = Modal;
 
@@ -13,7 +13,7 @@ type TCardRow = {
   product: TProduct;
   id: string;
   productQuantity: number;
-  handleSelected: (id: string, checked: boolean) => void;
+  handleSelected: (checked: boolean, id: string) => void;
   selectedIds: Record<string, boolean>;
 };
 type TUpdateData = {
@@ -82,7 +82,7 @@ const CartRow = ({
             type="checkbox"
             name=""
             id={id}
-            onChange={(e) => handleSelected(e, id)}
+            onChange={(e) => handleSelected(e.target.checked, id)}
             checked={selectedIds[id] || false}
           />
           <div className="w-[15%] lg:w-[20%] ">

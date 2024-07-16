@@ -21,10 +21,10 @@ const CartTable = ({ cartProduct }: TCardProduct) => {
 
   const [selectedIds, setSelectedIds] = useState<SelectedIdsType>({});
 
-  const handleSelected = (id: string, e: { target: HTMLInputElement }) => {
+  const handleSelected = (checked: boolean, id: string) => {
     setSelectedIds((prev) => ({
       ...prev,
-      [id]: (e.target as HTMLInputElement).checked,
+      [id]: checked,
     }));
   };
 

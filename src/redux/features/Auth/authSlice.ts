@@ -11,13 +11,11 @@ export type TUser = {
 type TAuthState = {
   user: null | TUser;
   token: null | string;
-  email: null | string;
 };
 
 const initialState: TAuthState = {
   user: null,
   token: null,
-  email: null,
 };
 
 const authSlice = createSlice({
@@ -25,10 +23,9 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action) => {
-      const { user, token, email } = action.payload;
+      const { user, token } = action.payload;
       state.user = user;
       state.token = token;
-      state.email = email;
     },
     logout: (state) => {
       state.user = null;

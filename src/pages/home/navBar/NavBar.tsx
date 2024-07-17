@@ -2,23 +2,19 @@ import { Badge, Button, Layout, Menu, MenuProps } from "antd";
 import { Link, NavLink } from "react-router-dom";
 import { ReactNode } from "react";
 import { useGetAllProductPriceQuery } from "../../../redux/features/cart/cartApi";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { logout } from "../../../redux/features/Auth/authSlice";
+import { RootState } from "../../../redux/store";
 
 const { Header } = Layout;
 const NavBar = () => {
   const { data } = useGetAllProductPriceQuery("mdekramulhassan168@gmail.com");
   const cart = data?.data?.totalCart;
-  // const [theme, setTheme] = useState<"dark" | "light">("light");
-
-  // useEffect(() => {
-  //   if (theme == "dark") {
-  //     document.body.classList.add("dark");
-  //   } else {
-  //     document.body.classList.remove("dark");
-  //   }
-  // }, [theme]);
-  // const toggleTheme = (checked: boolean) => {
-  //   setTheme(checked ? "dark" : "light");
-  // };
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state: RootState) => state.auth.user);
+  const handelLogout = () => {
+    dispatch(logout());
+  };
   type TItem = {
     name: string;
     label: ReactNode;
@@ -103,19 +99,21 @@ const NavBar = () => {
             </Badge>
           </div>
         </NavLink>
-        <Link to="/login">
-          <Button className="ml-3 py-5 font-bold bg-black text-white">
-            Login
-          </Button>
-        </Link>
 
-        {/* <Switch
-          checked={theme === "dark"}
-          onChange={toggleTheme}
-          checkedChildren="Dark"
-          unCheckedChildren="Light"
-          style={{ marginRight: "20px" }}
-        /> */}
+        {user ? (
+          <Button
+            onClick={handelLogout}
+            className="ml-3 py-5 font-bold bg-black text-white"
+          >
+            Logout
+          </Button>
+        ) : (
+          <Link to="/login">
+            <Button className="ml-3 py-5 font-bold bg-black text-white">
+              Login
+            </Button>
+          </Link>
+        )}
       </Header>
     </Layout>
   );

@@ -8,10 +8,10 @@ import { RootState } from "../../../redux/store";
 
 const { Header } = Layout;
 const NavBar = () => {
-  const { data } = useGetAllProductPriceQuery("mdekramulhassan168@gmail.com");
+  const user = useAppSelector((state: RootState) => state.auth.user);
+  const { data } = useGetAllProductPriceQuery(user?.email);
   const cart = data?.data?.totalCart;
   const dispatch = useAppDispatch();
-  const user = useAppSelector((state: RootState) => state.auth.user);
   const handelLogout = () => {
     dispatch(logout());
   };

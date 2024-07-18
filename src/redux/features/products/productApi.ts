@@ -1,6 +1,7 @@
 import { baseApi } from "../../api/baseApi";
 export type TProduct = {
   _id: string;
+  id: string;
   image: string[];
   title: string;
   brand: string;

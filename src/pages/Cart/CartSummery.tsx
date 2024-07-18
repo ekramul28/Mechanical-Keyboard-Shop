@@ -2,10 +2,15 @@ import { Button } from "antd";
 import { useGetAllProductPriceQuery } from "../../redux/features/cart/cartApi";
 import { loadStripe } from "@stripe/stripe-js";
 import { toast } from "sonner";
+import { RootState } from "../../redux/store";
+import { useAppSelector } from "../../redux/hooks";
+import { usePaymentMutation } from "../../redux/features/payment/paymentApi";
 
 const CartSummery = () => {
-  const email = "mdekramulhassan168@gmail.com";
-  const { data } = useGetAllProductPriceQuery(email);
+  const user = useAppSelector((state: RootState) => state.auth.user);
+
+  const { data } = useGetAllProductPriceQuery(user?.email);
+  const [payment] = usePaymentMutation();
   const cartTotal = data?.data;
 
   const handelMakePayment = async () => {
@@ -13,28 +18,31 @@ const CartSummery = () => {
       "pk_test_51OEnEtL2pc8251OJIpKkvcI0a5dYheFy8fPTEUoGZcKf5ivh3KFiM2V2G7uP0ks4pIL9oViusE7QFpW76DP4I85100LbdwsY0M"
     );
     const body = {
-      email: "mdekramulhassan168@gmail.com",
+      email: user?.email,
       total: cartTotal.total,
     };
-    const headers = {
-      "Content-Type": "application/json",
-    };
+
+    const session = await payment(body);
+    // const headers = {
+    //   "Content-Type": "application/json",
+    // };
 
     if (cartTotal?.totalPrice < 10) {
       toast.error("No Product quantity ");
       return;
     }
 
-    const response = await fetch(
-      `http://localhost:5000/api/v1/Create-checkout-session`,
-      {
-        method: "POST",
-        headers,
-        body: JSON.stringify(body),
-      }
-    );
+    // const response = await fetch(
+    //   `https://mechanical-keyboard-shop-server-zeta.vercel.app/api/v1/Create-checkout-session`,
+    //   {
+    //     method: "POST",
+    //     headers,
+    //     body: JSON.stringify(body),
+    //   }
+    // );
 
-    const session = await response.json();
+    // const session = await response.json();
+
     console.log(session);
     if (stripe) {
       const result = stripe.redirectToCheckout({

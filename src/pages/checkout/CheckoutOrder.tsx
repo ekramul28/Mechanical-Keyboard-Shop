@@ -1,7 +1,11 @@
 import { useGetAllProductPriceQuery } from "../../redux/features/cart/cartApi";
+import { useAppSelector } from "../../redux/hooks";
+import { RootState } from "../../redux/store";
 
 const CheckoutOrder = () => {
-  const { data } = useGetAllProductPriceQuery("mdekramulhassan168@gmail.com");
+  const user = useAppSelector((state: RootState) => state.auth.user);
+
+  const { data } = useGetAllProductPriceQuery(user?.email);
   const cartTotal = data?.data;
   return (
     <div className="order-4 md:order-1 w-[90%] mx-auto lg:col-span-2">

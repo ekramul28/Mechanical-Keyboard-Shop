@@ -6,24 +6,32 @@ import { useState } from "react";
 import QuantityBtn from "../../../components/quantitybtn/QuantityBtn";
 import { useAddProductMutation } from "../../../redux/features/cart/cartApi";
 import { toast } from "sonner";
+import { RootState } from "../../../redux/store";
+import { useAppSelector } from "../../../redux/hooks";
 const ProductDetails = () => {
   const { id } = useParams();
   const [productQuantity, setProductQuantity] = useState(0);
   const { data, isLoading } = useSingleProductQuery(id);
   const product = data?.data;
-
+  console.log(product);
   const [addProduct] = useAddProductMutation();
+  const user = useAppSelector((state: RootState) => state.auth.user);
+
   // add cart
   const handleAddToCart = async (id: string) => {
     const data = {
       product: id,
       productQuantity,
-      email: "mdekramulhassan168@gmail.com",
+      email: user?.email,
     };
     try {
       const result = await addProduct(data);
+      console.log(result);
       if (result?.data?.success) {
         toast.success("Product Add Successfully");
+      }
+      if (result?.error) {
+        toast.error("Product already added");
       }
     } catch (error) {
       console.log(error);
@@ -73,7 +81,7 @@ const ProductDetails = () => {
                 <p className="mt-3 font-bold">Available Quantity</p>
                 <div className="flex  items-center gap-4">
                   <div className="w-[35px] h-[35px]  flex  justify-center items-center text-sm bg-white text-black border-black border duration-[.4s] cursor-pointer hover:bg-black hover:text-white">
-                    {product?.availableQuantity}
+                    {product?.availableQuantity - productQuantity}
                   </div>
                 </div>
 
@@ -85,7 +93,7 @@ const ProductDetails = () => {
                 {/* Wishlist */}
                 <div className="flex flex-col gap-2 mt-10">
                   <Button
-                    onClick={() => handleAddToCart(product._id)}
+                    onClick={() => handleAddToCart(product?._id)}
                     className=" text-white bg-black hover:bg-black py-6 font-bold"
                   >
                     Add To Cart

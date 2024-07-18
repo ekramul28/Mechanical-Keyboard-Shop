@@ -86,11 +86,13 @@ const CartRow = ({
             checked={selectedIds[id] || false}
           />
           <div className="w-[15%] lg:w-[20%] ">
-            <img
-              src={product?.image[0]}
-              alt=""
-              className="w-full h-full object-cover bg-[#F0F0F4] p-1"
-            />
+            {product && product.image && product.image[0] && (
+              <img
+                src={product.image[0]}
+                alt=""
+                className="w-full h-full object-cover bg-[#F0F0F4] p-1"
+              />
+            )}
           </div>
           <div className="flex flex-col justify-center w-[50%] gap-1">
             <p className=" font-bold text-sm md:text-base">{product?.title}</p>

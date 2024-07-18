@@ -3,24 +3,18 @@ import { Link } from "react-router-dom";
 import { TProduct } from "../../redux/features/products/productApi";
 import { useAddProductMutation } from "../../redux/features/cart/cartApi";
 import { toast } from "sonner";
+import { RootState } from "../../redux/store";
+import { useAppSelector } from "../../redux/hooks";
 
-const ProductsCard = ({
-  _id,
-  image,
-  title,
-  rating,
-  price,
-  keyboardType,
-}: TProduct) => {
+const ProductsCard = ({ _id, image, title, rating, price }: TProduct) => {
   const [addProduct] = useAddProductMutation();
-  const handleAddToCart = async (id: string) => {
+  const user = useAppSelector((state: RootState) => state.auth.user);
+
+  const handleAddToCart = async (_id: string) => {
     const data = {
-      product: id,
-      title,
-      image: image[0],
-      keyboardType,
-      productQuantity: 1,
-      email: "mdekramulhassan168@gmail.com",
+      product: _id,
+      productQuantity: 0,
+      email: user?.email,
     };
     try {
       const result = await addProduct(data);

@@ -1,12 +1,14 @@
 import { useCartProductQuery } from "../../redux/features/cart/cartApi";
+import { useAppSelector } from "../../redux/hooks";
+import { RootState } from "../../redux/store";
 import CartSummery from "./CartSummery";
 import CartTable from "./CartTable";
 
 const Card = () => {
-  const email = "mdekramulhassan168@gmail.com";
-  const { data, isLoading } = useCartProductQuery(email);
-  console.log(data);
+  const user = useAppSelector((state: RootState) => state.auth.user);
+  const { data, isLoading } = useCartProductQuery(user?.email);
   const cartProducts = data?.data ?? [];
+  console.log(cartProducts);
   return (
     <div>
       {isLoading ? (

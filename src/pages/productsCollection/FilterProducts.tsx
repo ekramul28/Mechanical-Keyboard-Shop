@@ -6,12 +6,12 @@ import { Button, Select } from "antd";
 // const keyBoard: string[] = ["man", "lind", "ok"];
 
 const FilterProducts = () => {
-  const [cities, setCities] = useState("");
+  const [category, setCategory] = useState("");
 
-  console.log(cities);
+  console.log(category);
 
   const handleKeyboardType = (label: string) => {
-    setCities(label);
+    setCategory(label);
     console.log(label);
   };
 

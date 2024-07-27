@@ -1,5 +1,5 @@
 import { Button, Rate } from "antd";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import ProductDetailsCarousal from "./ProductDetailsCarousal";
 import { useSingleProductQuery } from "../../../redux/features/products/productApi";
 import { useState } from "react";
@@ -10,6 +10,7 @@ import { RootState } from "../../../redux/store";
 import { useAppSelector } from "../../../redux/hooks";
 const ProductDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [productQuantity, setProductQuantity] = useState(0);
   const { data, isLoading } = useSingleProductQuery(id);
   const product = data?.data;
@@ -25,16 +26,22 @@ const ProductDetails = () => {
       email: user?.email,
     };
     try {
-      const result = await addProduct(data);
+      const result = await addProduct(data).unwrap();
       console.log(result);
       if (result?.data?.success) {
         toast.success("Product Add Successfully");
       }
-      if (result?.error) {
+
+      if (!result?.data?.success) {
         toast.error("Product already added");
       }
     } catch (error) {
       console.log(error);
+      console.log(error?.data?.message);
+      if (error?.data?.message === "login  first") {
+        navigate("/login");
+        // <Navigate to="/login" replace />;
+      }
     }
   };
 

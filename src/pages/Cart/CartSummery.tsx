@@ -10,7 +10,7 @@ const CartSummery = () => {
   const user = useAppSelector((state: RootState) => state.auth.user);
 
   const { data } = useGetAllProductPriceQuery(user?.email);
-  const [payment] = usePaymentMutation();
+  const [payment, { isLoading }] = usePaymentMutation();
   const cartTotal = data?.data;
 
   const handelMakePayment = async () => {
@@ -44,9 +44,10 @@ const CartSummery = () => {
     // const session = await response.json();
 
     console.log(session);
+    console.log(session?.data.data.id);
     if (stripe) {
       const result = stripe.redirectToCheckout({
-        sessionId: session?.data.id,
+        sessionId: session?.data.data.id,
       });
       console.log(result);
     } else {
@@ -86,7 +87,7 @@ const CartSummery = () => {
         onClick={handelMakePayment}
         className="w-full bg-black py-5 text-white font-bold  mt-6 rounded-sm  "
       >
-        Check Out
+        {isLoading ? "loading..." : "Check Out"}
       </Button>
 
       <div className="mt-4 text-[12px] text-center">

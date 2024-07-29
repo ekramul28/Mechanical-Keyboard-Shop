@@ -6,6 +6,7 @@ type FilterProductsProps = {
   setType: ({ name, value }: { name: string; value: string }) => void;
   setOffer: ({ name, value }: { name: string; value: string }) => void;
   setAllProduct: ({ name, value }: { name: string; value: string }) => void;
+  setSort: ({ name, value }: { name: string; value: string }) => void;
 };
 
 const FilterProducts: React.FC<FilterProductsProps> = ({
@@ -14,6 +15,7 @@ const FilterProducts: React.FC<FilterProductsProps> = ({
   setType,
   setOffer,
   setAllProduct,
+  setSort,
 }) => {
   const handleKeyboardTitle = (label: string) => {
     setTitle({ name: "title", value: label });
@@ -33,6 +35,12 @@ const FilterProducts: React.FC<FilterProductsProps> = ({
     setType({ name: "", value: "" });
     setColor({ name: "", value: "" });
     setTitle({ name: "", value: "" });
+    setSort({ name: "", value: "" });
+  };
+
+  const handleShort = (label: string) => {
+    console.log(label);
+    setSort({ name: "sort", value: label });
   };
   return (
     <div className="md:flex  lg:gap-6 gap-3   md:justify-between md:items-start justify-center items-center my-10 mx-2 ">
@@ -133,7 +141,7 @@ const FilterProducts: React.FC<FilterProductsProps> = ({
       </div>
       <div className="flex justify-center">
         <Select
-          onChange={handleKeyboardType}
+          onChange={handleShort}
           showSearch
           placeholder="Sort by"
           filterOption={(input, label) =>

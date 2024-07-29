@@ -22,6 +22,10 @@ const Products = () => {
     name: "",
     value: "",
   });
+  const [sort, setSort] = useState<TObject>({
+    name: "",
+    value: "",
+  });
   console.log(title);
   console.log(color);
   console.log(type);
@@ -31,7 +35,7 @@ const Products = () => {
     data: products,
     isLoading,
     error,
-  } = useProductQuery([title, color, type, offer, allProduct]);
+  } = useProductQuery([title, color, type, offer, allProduct, sort]);
   console.log(products);
   return (
     <div className="">
@@ -42,6 +46,7 @@ const Products = () => {
         setType={setType}
         setOffer={setOffer}
         setAllProduct={setAllProduct}
+        setSort={setSort}
       />
       <div>
         <h1 className="font-bold text-4xl mt-6 mb-4 ">Card Section</h1>

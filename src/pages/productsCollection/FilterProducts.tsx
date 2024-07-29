@@ -5,6 +5,7 @@ type FilterProductsProps = {
   setColor: ({ name, value }: { name: string; value: string }) => void;
   setType: ({ name, value }: { name: string; value: string }) => void;
   setOffer: ({ name, value }: { name: string; value: string }) => void;
+  setAllProduct: ({ name, value }: { name: string; value: string }) => void;
 };
 
 const FilterProducts: React.FC<FilterProductsProps> = ({
@@ -12,6 +13,7 @@ const FilterProducts: React.FC<FilterProductsProps> = ({
   setColor,
   setType,
   setOffer,
+  setAllProduct,
 }) => {
   const handleKeyboardTitle = (label: string) => {
     setTitle({ name: "title", value: label });
@@ -26,6 +28,10 @@ const FilterProducts: React.FC<FilterProductsProps> = ({
     setOffer({ name: "offer", value: label });
   };
   const handelAllProduct = () => {
+    setAllProduct({ name: "", value: "" });
+    setOffer({ name: "", value: "" });
+    setType({ name: "", value: "" });
+    setColor({ name: "", value: "" });
     setTitle({ name: "", value: "" });
   };
   return (

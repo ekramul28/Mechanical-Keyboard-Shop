@@ -6,8 +6,8 @@ export type TProduct = {
   title: string;
   brand: string;
   availableQuantity: number;
-  price: number;
-  rating: number;
+  // price: number;
+  // rating: number;
   description: string;
   keyboardType: string;
   offerPrice?: number;
@@ -17,13 +17,16 @@ export type TProduct = {
 const ProductApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     product: builder.query({
-      query: (args) => {
+      query: (args, data) => {
         const params = new URLSearchParams();
         console.log({ args });
         if (args) {
           args.forEach((item: TQueryParam) => {
             params.append(item.name, item.value as string);
           });
+        }
+        if (data) {
+          params.append(data);
         }
 
         return {

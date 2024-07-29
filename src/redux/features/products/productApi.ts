@@ -17,10 +17,21 @@ export type TProduct = {
 const ProductApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     product: builder.query({
-      query: () => ({
-        url: "/products",
-        method: "GET",
-      }),
+      query: (args) => {
+        const params = new URLSearchParams();
+        console.log({ args });
+        if (args) {
+          args.forEach((item: TQueryParam) => {
+            params.append(item.name, item.value as string);
+          });
+        }
+
+        return {
+          url: `/products`,
+          method: "GET",
+          params: params,
+        };
+      },
     }),
     singleProduct: builder.query({
       query: (id) => ({

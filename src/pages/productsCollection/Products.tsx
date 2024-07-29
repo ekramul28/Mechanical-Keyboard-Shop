@@ -13,6 +13,10 @@ const Products = () => {
     name: string;
     value: string;
   };
+  type TObjectPage = {
+    name: string;
+    value: number;
+  };
 
   const [title, setTitle] = useState<TObject>({ name: "", value: "" });
   const [color, setColor] = useState<TObject>({ name: "", value: "" });
@@ -26,16 +30,24 @@ const Products = () => {
     name: "",
     value: "",
   });
-  console.log(title);
-  console.log(color);
-  console.log(type);
-  console.log(offer);
+  const [pagination, setPagination] = useState<TObjectPage>({
+    name: "page",
+    value: 1,
+  });
 
   const {
     data: products,
     isLoading,
     error,
-  } = useProductQuery([title, color, type, offer, allProduct, sort]);
+  } = useProductQuery([
+    title,
+    color,
+    type,
+    offer,
+    allProduct,
+    sort,
+    pagination,
+  ]);
   console.log(products);
   return (
     <div className="">
@@ -57,8 +69,8 @@ const Products = () => {
             <>Loading... </>
           ) : products ? (
             <>
-              {Array.isArray(products?.data) ? (
-                products?.data?.map((card: TProduct, index: number) => (
+              {Array.isArray(products?.data?.result) ? (
+                products?.data?.result.map((card: TProduct, index: number) => (
                   <ProductsCard key={index} {...card} />
                 ))
               ) : (
@@ -69,7 +81,10 @@ const Products = () => {
         </div>
       </div>
       <div className="flex justify-center items-center">
-        <PaginationCard />
+        <PaginationCard
+          setPagination={setPagination}
+          pageData={products?.data?.meta}
+        />
       </div>
     </div>
   );

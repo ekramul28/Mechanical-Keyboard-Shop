@@ -17,16 +17,13 @@ export type TProduct = {
 const ProductApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     product: builder.query({
-      query: (args, data) => {
+      query: (args) => {
         const params = new URLSearchParams();
         console.log({ args });
         if (args) {
           args.forEach((item: TQueryParam) => {
             params.append(item.name, item.value as string);
           });
-        }
-        if (data) {
-          params.append(data);
         }
 
         return {

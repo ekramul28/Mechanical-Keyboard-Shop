@@ -48,7 +48,6 @@ const Products = () => {
     sort,
     pagination,
   ]);
-  console.log(products);
   return (
     <div className="">
       <ProductHeader />

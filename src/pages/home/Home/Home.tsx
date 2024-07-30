@@ -12,7 +12,8 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   const { data } = useProductQuery(undefined);
-  const latestSix = data?.data.slice(-6);
+  console.log(data);
+  const latestSix = data?.data?.result.slice(-6);
   return (
     <div>
       <HeroSection />

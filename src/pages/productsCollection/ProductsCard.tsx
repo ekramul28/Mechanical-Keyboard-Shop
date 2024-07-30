@@ -1,14 +1,19 @@
 import { Button, Card, Rate } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { TProduct } from "../../redux/features/products/productApi";
 import { useAddProductMutation } from "../../redux/features/cart/cartApi";
 import { toast } from "sonner";
 import { RootState } from "../../redux/store";
 import { useAppSelector } from "../../redux/hooks";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
+interface ErrorResponse {
+  message: string;
+}
 const ProductsCard = ({ _id, image, title, rating, price }: TProduct) => {
   const [addProduct] = useAddProductMutation();
   const user = useAppSelector((state: RootState) => state.auth.user);
+  const navigate = useNavigate();
 
   const handleAddToCart = async (_id: string) => {
     const data = {
@@ -21,7 +26,20 @@ const ProductsCard = ({ _id, image, title, rating, price }: TProduct) => {
       if (result?.data?.success) {
         toast.success("Product Add Successfully");
       }
-      if (result?.error) {
+
+      const error = result?.error;
+
+      const fetchError = error as FetchBaseQueryError;
+
+      const res = fetchError.data as ErrorResponse;
+      const message = res?.message;
+      console.log(message);
+      if (message === "login  first") {
+        navigate("/login");
+        return;
+      }
+
+      if (error) {
         toast.error("Already Added");
       }
       console.log(result);

@@ -11,6 +11,7 @@ import SuccessPage from "../pages/success/Success";
 import ErrorPage from "../pages/Errorpage/ErrorPage";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
+import Dashboard from "../pages/dashboard/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
         element: <Contact />,
       },
     ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
   },
 ]);
 

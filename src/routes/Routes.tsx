@@ -12,6 +12,7 @@ import ErrorPage from "../pages/Errorpage/ErrorPage";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import Dashboard from "../pages/dashboard/Dashboard";
+import AddProduct from "../pages/dashboard/sideBar/addProduct/AddProduct";
 
 const router = createBrowserRouter([
   {
@@ -75,6 +76,12 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
+    children: [
+      {
+        path: "AddProduct",
+        element: <AddProduct />,
+      },
+    ],
   },
 ]);
 

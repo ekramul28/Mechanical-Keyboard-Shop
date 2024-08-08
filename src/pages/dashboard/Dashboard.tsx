@@ -1,19 +1,12 @@
 import { Layout, Menu } from "antd";
-import { createElement } from "react";
-import { Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 const { Header, Content, Sider } = Layout;
 
 const Dashboard = () => {
-  const items = [
-    "UserOutlined",
-    "VideoCameraOutlined",
-    "UploadOutlined",
-    "UserOutlined",
-  ].map((icon, index) => ({
+  const items = ["AllUser", "AllProduct", "AddProduct"].map((icon, index) => ({
     key: String(index + 1),
-    icon: icon,
-    label: icon,
+    label: <NavLink to={icon}>{icon}</NavLink>,
   }));
   return (
     <div>
@@ -29,6 +22,9 @@ const Dashboard = () => {
           }}
         >
           <div className="demo-logo-vertical" />
+          <div>
+            <h1 className="text-white text-center my-6">MY Logo</h1>
+          </div>
           <Menu
             theme="dark"
             mode="inline"
